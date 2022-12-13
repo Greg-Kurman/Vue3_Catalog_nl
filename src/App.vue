@@ -1,35 +1,31 @@
 <template>
-  <MyNavigation :users_data='USERS'/>
-  <MyShop />
-  <MyCategory />
+  <MyNavigation />
+  <transition name="fade">
+     
+    <router-view >
+    
+    </router-view>
+  </transition>
 
 </template>
 
 <script>
-import MyNavigation from './components/MyNavigation.vue'
-import MyShop from './components/MyShop.vue'
-import MyCategory from './components/MyCategory.vue'
-import { mapActions, mapGetters } from "vuex";
+import MyNavigation from "./components/MyNavigation.vue";
 
 export default {
   name: 'App',
   components: {
-    MyNavigation,
-    MyShop,
-    MyCategory
+    MyNavigation
   },
   data: () => {
     return {};
   },
   computed: {
-    ...mapGetters(["USERS"]),
   },
   methods: {
-    ...mapActions(["GET_USERS_FROM_API"]),
   },
   mounted() {
-    this.GET_USERS_FROM_API();
-    
+
   },
 }
 </script>
@@ -112,6 +108,21 @@ select {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition-property: opacity;
+  transition-duration: 0.25s;
+}
+
+.fade-enter-active {
+  transition-delay: 0.25s;
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
 }
 
 #app {

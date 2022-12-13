@@ -3,8 +3,10 @@
         <div class="wrapper">
             <div class="main__wrapper">
                 <div class="main__title">
-                    <a href="#"><img src="../assets/Back_btn.png" alt=""></a>
-                    <h1>Функциональные коктейли</h1>
+                        <router-link to="/">
+                        <img src="../assets/Back_btn.png" alt="">
+                        </router-link>
+                        <h1>Функциональные коктейли</h1>
                 </div>
                 <div class="main__body">
                     <div class="main__list">
@@ -20,14 +22,14 @@
                         </ul>
                     </div>
                     <div class="main__items">
-                       <MyCategoryItem/>
-                       <MyCategoryItem/>
-                       <MyCategoryItem/>
-                       <MyCategoryItem/>
-                       <MyCategoryItem/>
-                       <MyCategoryItem/>
-                       <MyCategoryItem/>
-                       <MyCategoryItem/>
+                        <MyCategoryItem />
+                        <MyCategoryItem />
+                        <MyCategoryItem />
+                        <MyCategoryItem />
+                        <MyCategoryItem />
+                        <MyCategoryItem />
+                        <MyCategoryItem />
+                        <MyCategoryItem />
 
                     </div>
                 </div>
@@ -37,12 +39,12 @@
 </template>
   
 <script>
- import MyCategoryItem from './MyCategoryItem.vue'
+import MyCategoryItem from './MyCategoryItem.vue'
 
 
 export default {
     components: {
-         MyCategoryItem
+        MyCategoryItem
     },
     name: 'MyShop',
     props: {

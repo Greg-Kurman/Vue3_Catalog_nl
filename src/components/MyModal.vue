@@ -6,7 +6,6 @@
                 <header class="modal-header" id="modalTitle">
                     <slot name="header">
                         Выбор населенного пункта:
-
                         <button type="button" class="btn-close" @click="close" aria-label="Close modal">
 
                         </button>
@@ -14,10 +13,10 @@
                 </header>
                 <section class="modal-body" id="modalDescription">
                     <slot name="body">
-                        <input type="text" placeholder="Введите город" class="modal-input"/>
+                        <input v-model="city" type="text" placeholder="Введите город" class="modal-input" v-on:keyup.enter="submit"/>
                     </slot>
                     <slot name="footer">
-                        <button type="button" class="btn-apply" @click="close" aria-label="Close modal">
+                        <button type="button" class="btn-apply" @click="submit" aria-label="Close modal" >
                             ПОДТВЕРДИТЬ
                         </button>
                     </slot>
@@ -33,7 +32,31 @@
 <script>
 export default {
     name: 'MyModal',
+    props: {
+        city_data: {
+            type: Object,
+            default: ()=> {
+                return {}
+            }
+        }
+
+    },
+    data(){
+        return {
+            city: ""
+        }
+    },
     methods: {
+
+        submit(){
+            this.$emit('submit', {
+                city: this.city
+            })
+            this.$emit('close')
+            console.log(this.city)
+            this.$emit(this.city)
+        },
+
         close() {
             this.$emit('close');
         },
@@ -85,6 +108,7 @@ export default {
     margin: 0 18px 0 19px;
     border: 1px solid rgba(151, 151, 151, 0.5);
     border-radius: 5px;
+    padding-left: 10px;
 }
 
 .modal-footer {

@@ -1,18 +1,24 @@
 <template>
-    <div class="shop">
-        <div class="shop__items">
-            <div class="shop__item">
-                <div>БАД
-                    {{product_data}}
+        <div class="shop">
+            <div class="shop__items" v-bind:style="{ 'background-image': `url(${product_data.image})` }">
+                <div class="shop__item">
+                    <div>
+                        {{ product_data.name }}
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </template>
   
 <script>
 export default {
     name: 'MyNavigation',
+    data() {
+        return {
+            image: null,
+        }
+    },
     props: {
         product_data: {
             type: Object,
@@ -21,6 +27,10 @@ export default {
             }
         }
     },
+    beforeMount() {
+        this.image = this.product_data.image
+    }
+
 }
 </script>
   
@@ -42,8 +52,7 @@ export default {
 
 }
 
-.shop__item {
-    background-color: blueviolet;
+.shop__items {
     width: 270px;
     height: 150px;
     margin: 15px 15px 0 0;
@@ -53,9 +62,6 @@ export default {
     font-weight: 600;
     font-size: 24px;
     line-height: 28px;
-    background-image: url(../assets/shop_items/БАД.svg);
-    background-repeat: no-repeat;
-    background-position: 120px 70px;
     color: #FFFFFF;
 }
 

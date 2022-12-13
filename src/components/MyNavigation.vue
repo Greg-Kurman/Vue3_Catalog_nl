@@ -2,10 +2,9 @@
   <div class="nav">
     <div class="nav__wrapper wrapper">
       <div class="nav__image" @click="showModal"><img src="../assets/nav.png" alt=""></div>
-      <div class="nav__city" @click="showModal">Новосибирск</div>
-      <div class="nav__city" @click="pageClick">rjydsad</div>
+      <div class="nav__city" @click="showModal">{{city}}</div>
 
-      <MyModal v-show="isModalVisible" @close="closeModal" />
+      <MyModal v-show="isModalVisible" @close="closeModal" @submit="submit" />
     </div>
   </div>
 </template>
@@ -13,7 +12,6 @@
 <script>
 
 import MyModal from '../components/MyModal.vue'
-import axios from 'axios'
 
 export default {
   components: {
@@ -21,40 +19,33 @@ export default {
   },
   name: 'MyNavigation',
   props: {
-    users_data: {
-      type: Array,
-      default: () => {
-        return [];
-      },
+      cityP: String
     },
-  },
+  
   data() {
     return {
       isModalVisible: false,
+      infoCity: [],
+      term: null,
+      city: 'Новосибирск',
     };
   },
   methods: {
     showModal() {
       this.isModalVisible = true;
+      console.log('show')
     },
     closeModal() {
       this.isModalVisible = false;
     },
-    pageClick() {
-      axios
-      .get('https://nlstar.com/api/catalog3/v1/city/')
-      .then(response => {
-        this.info = response.data;
-      })
-      .catch(error => {
-        console.log(error);
-        this.errored = true;
-      })
-      .finally(() => (this.loading = false));
-    
-      console.log( ...this.info)
-    },
+    submit(city){
+      this.city = Object.values(city).join().toString()
+    }
+
   },
+  mounted() {
+     
+  }
 
 }
 </script>
