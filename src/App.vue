@@ -11,6 +11,8 @@
 
 <script>
 import MyNavigation from "./components/MyNavigation.vue";
+  
+
 
 export default {
   name: 'App',

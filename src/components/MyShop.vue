@@ -6,23 +6,28 @@
                     <h1>Категории товаров</h1>
                 </div>
                 <RouterLink to="/MyCategory">
-                    <div class="main__items">
-                        <MyShopItem v-for="product in info" :key="product.id" :product_data="product" />
-                    </div>
+                    <DotLoader :loading="loading" :color="color" :size="size" class="spinner"/>
+
+                        <div class="main__items">
+                            <MyShopItem v-for="product in info" :key="product.id" :product_data="product" />
+                        </div>
+
                 </RouterLink>
             </div>
         </div>
     </div>
 </template>
-  
+
 <script>
 import MyShopItem from './MyShopItem.vue'
 import axios from 'axios'
+import { DotLoader } from "../../node_modules/vue3-spinner/lib/vue3-spinner";
 
 
 export default {
     components: {
         MyShopItem,
+        DotLoader,
     },
     name: 'MyShop',
     props: {
@@ -30,6 +35,9 @@ export default {
     data() {
         return {
             info: null,
+            size: 150,
+            color: 'black',
+            loading: true,
         }
     },
     beforeMount() {
@@ -45,20 +53,24 @@ export default {
             .finally(() => (this.loading = false));
 
         let arr = [1, 0, 5, 2]
-      
-        console.log( eval(
-            arr.filter((n)=>!!n)
+
+        console.log(eval(
+            arr.filter((n) => !!n)
         ))
-
-
     }
 }
 </script>
-  
-  <!-- Add "scoped" attribute to limit CSS to this component only -->
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style >
 a {
     text-decoration: none;
+}
+
+.spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }
 
 .shop {
@@ -92,4 +104,3 @@ a {
     }
 }
 </style>
-  
