@@ -129,7 +129,7 @@ select {
 
 #app {
   background: #e5e5e548;
-  height: 100%;
+  height: 100vh;
   font-family: 'Futura PT Cond Extra Bold';
 
 }

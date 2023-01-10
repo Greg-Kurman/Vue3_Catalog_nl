@@ -4,7 +4,6 @@
                 <div class="shop__item">
                     <div>
                         {{ product_data.name }}
-
                     </div>
                 </div>
             </div>
